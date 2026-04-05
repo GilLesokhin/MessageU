@@ -29,11 +29,6 @@ sudo apt-get install libboost-all-dev libcrypto++
 g++ -std=c++17 -o client *.cpp -lboost_system -lboost_thread -lcryptopp
 ```
 
-Or use the Visual Studio solution file:
-```
-Maman15.sln
-```
-
 ## Configuration
 
 Edit `my.info` to configure the client:
