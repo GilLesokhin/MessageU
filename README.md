@@ -24,12 +24,16 @@ sequenceDiagram
 
     A->>S: Request symmetric key from B
     S->>B: Forward key request
-    B->>S: AES key encrypted with A's RSA public key
+    B->>B: Generate and store AES key
+    B->>S: Encrypt AES key with A's RSA public key
     S->>A: Forward encrypted AES key
+    A->>A: Decrypt and store the same AES key
 
-    A->>S: AES-encrypted text message
+    Note over A,B: Both clients now share one AES key
+
+    A->>S: Encrypt message with shared AES key
     S->>B: Forward encrypted message
-    B->>S: AES-encrypted reply
+    B->>S: Encrypt reply with shared AES key
     S->>A: Forward encrypted reply
 ```
 
