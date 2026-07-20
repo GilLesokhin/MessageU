@@ -4,16 +4,6 @@ A secure messaging application built with a C++ client and Python server.
 
 Built for an Open University Defensive Systems Programming course. The project includes the full client and server implementation.
 
-```mermaid
-flowchart LR
-    Client["C++ Client<br/>Boost.Asio + Crypto++"]
-    Server["Python TCP Server<br/>Thread per connection"]
-    Store["In-Memory Store<br/>Users and queued messages"]
-
-    Client -->|"Custom binary protocol"| Server
-    Server <--> Store
-```
-
 ## Overview
 
 MessageU implements a course-specified binary protocol for client registration, user discovery, key exchange, encrypted messaging, and message retrieval.
