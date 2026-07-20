@@ -8,6 +8,12 @@ Built for an Open University Defensive Systems Programming course. The project i
 
 MessageU implements a course-specified binary protocol for client registration, user discovery, key exchange, encrypted messaging, and message retrieval.
 
+## System Design
+
+The C++ client manages the interactive messaging workflow, TCP communication, protocol serialization, and local cryptographic operations. The Python server accepts concurrent connections, validates protocol requests, and manages registered users and queued messages.
+
+Clients use RSA public keys to exchange AES symmetric keys. Text messages are encrypted with AES before delivery through the server.
+
 ## Technical Highlights
 
 - C++ client using Boost.Asio for TCP communication.
