@@ -14,6 +14,29 @@ The C++ client manages the interactive messaging workflow, TCP communication, pr
 
 Clients use RSA public keys to exchange AES symmetric keys. Text messages are encrypted with AES before delivery through the server.
 
+## Conceptual Message Flow
+
+```mermaid
+sequenceDiagram
+    participant A as Client A
+    participant S as Server
+    participant B as Client B
+
+    A->>S: Request symmetric key from B
+    S->>B: Forward key request
+    B->>S: AES key encrypted with A's RSA public key
+    S->>A: Forward encrypted AES key
+
+    A->>S: AES-encrypted text message
+    S->>B: Forward encrypted message
+    B->>S: AES-encrypted reply
+    S->>A: Forward encrypted reply
+```
+
+## Concurrent Server Handling
+
+The Python server handles each TCP connection in a dedicated thread. Shared user and message data is protected with a lock, allowing multiple clients to interact with the server concurrently.
+
 ## Technical Highlights
 
 - C++ client using Boost.Asio for TCP communication.
